@@ -1,0 +1,12 @@
+{
+  "Information": "This file contains default values for the AWS Lambda .NET CLI commands.",
+  "profile": "default",
+  "region": "us-east-1",
+  "configuration": "Release",
+  "function-architecture": "x86_64",
+  "function-runtime": "dotnet8",
+  "function-memory-size": 512,
+  "function-timeout": 30,
+  "function-handler": "WebApplication1",
+  "function-url-enable": true
+}

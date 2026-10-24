@@ -1,0 +1,14 @@
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+*.tmp
+**/Properties/PublishProfiles/
+**/appsettings.Local.json
+.env
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.key
