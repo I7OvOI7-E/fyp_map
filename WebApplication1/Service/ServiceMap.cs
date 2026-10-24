@@ -1,4 +1,4 @@
-﻿using WebApplication1;
+using WebApplication1;
 using Newtonsoft.Json.Linq;
 using WebApplication1.Models;
 using Microsoft.EntityFrameworkCore;       
@@ -128,8 +128,8 @@ public class ServiceMap
             device = new Devices
             {
                 DeviceUUID = deviceUuid,
-                FirstSeen = DateTime.Now,
-                LastSeen = DateTime.Now,
+                FirstSeen = DateTime.UtcNow,
+                LastSeen = DateTime.UtcNow,
             };
      
             await _context.Devices.AddAsync(device);
@@ -137,9 +137,9 @@ public class ServiceMap
             
             
         }
-        device.LastSeen = DateTime.Now;
+        device.LastSeen = DateTime.UtcNow;
         report.DeviceID = device.DeviceID;
-        report.ReportTimestamp = DateTime.Now;
+        report.ReportTimestamp = DateTime.UtcNow;
 
         await _context.IncidentReports.AddAsync(report);
         await _context.SaveChangesAsync();
@@ -159,7 +159,7 @@ public class ServiceMap
         {
             ReportID = reportId,
             ImageData = Convert.FromBase64String(imageData),
-            UploadedAt = DateTime.Now
+            UploadedAt = DateTime.UtcNow
         };
 
         await _context.IncidentImages.AddAsync(image);
@@ -180,15 +180,15 @@ public class ServiceMap
             device = new Devices
             {
                 DeviceUUID = deviceUuid,
-                FirstSeen = DateTime.Now,
-                LastSeen = DateTime.Now,
+                FirstSeen = DateTime.UtcNow,
+                LastSeen = DateTime.UtcNow,
             };
 
             await _context.Devices.AddAsync(device);
             await _context.SaveChangesAsync();
         }
 
-        device.LastSeen = DateTime.Now;
+        device.LastSeen = DateTime.UtcNow;
 
         if (chart.ReportID.HasValue)
         {
@@ -202,7 +202,7 @@ public class ServiceMap
         }
 
         chart.DeviceID = device.DeviceID;
-        chart.CreatedAt = DateTime.Now;
+        chart.CreatedAt = DateTime.UtcNow;
         chart.IsDeleted = false;
 
         await _context.Charts.AddAsync(chart);
@@ -224,15 +224,15 @@ public class ServiceMap
             {
                 DeviceUUID = deviceUuid,
                 Nickname = nickname,
-                FirstSeen = DateTime.Now,
-                LastSeen = DateTime.Now,
+                FirstSeen = DateTime.UtcNow,
+                LastSeen = DateTime.UtcNow,
             };
             await _context.Devices.AddAsync(device);
         }
         else
         {
             device.Nickname = nickname;     
-            device.LastSeen = DateTime.Now;
+            device.LastSeen = DateTime.UtcNow;
         }
 
         await _context.SaveChangesAsync();
